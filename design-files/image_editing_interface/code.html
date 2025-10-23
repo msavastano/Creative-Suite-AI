@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gemini Flash Image</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1313ec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111118",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white">
+<div class="relative flex h-auto min-h-screen w-full flex-col">
+<div class="flex items-center p-4 pb-2 justify-between bg-background-light dark:bg-background-dark">
+<button class="flex items-center justify-center size-12 shrink-0 rounded-full hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-white">arrow_back</span>
+</button>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Gemini Flash Image</h2>
+<button class="flex items-center justify-center size-12 shrink-0 rounded-full hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-white">help_outline</span>
+</button>
+</div>
+<div class="flex-grow p-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex flex-col items-center justify-center bg-[#1c1c27] rounded-lg p-4 h-64 md:h-auto aspect-square">
+<p class="text-[#9d9db9] text-sm font-normal mb-2">Original</p>
+<div class="w-full flex-grow bg-center bg-no-repeat bg-cover rounded-md" data-alt="A tranquil landscape with a river and mountains in the background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBiLxUo1hyWl3GNZw2qHt1Xe7iqmRFPxYXatQDSRZ9b4OMq5UQZC4pqckQenH0fphcOLIUT2ASJxam9b8ZF7zA4xQoonXj0OcaoQkFEeD4Jt5m77Z8PIOxWpbWiQK5yyE_qcbf5izkBmjutGC60dS48f1W3cNJ7yvZVOvw_4jn6zNiafbmIv6kS6imm-misbiW7QPgqZwbEdNqvhfuV_OMBYuxQmcDeFeevl9xDqzPpO3ZoeR-5UmQLxj3HrAoAaa2G4FXODUED5w");'></div>
+</div>
+<div class="flex flex-col items-center justify-center bg-[#1c1c27] rounded-lg p-4 h-64 md:h-auto aspect-square">
+<p class="text-[#9d9db9] text-sm font-normal mb-2">Edited</p>
+<div class="w-full flex-grow bg-center bg-no-repeat bg-cover rounded-md" data-alt="The same landscape but now with a vibrant sunset and a small boat on the river" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCiJN5FIt32GH084cMb-cjmjdm7CL7gCB7fK58mhHNRpBlVDS7HxkzUmsGTXdYRTqFsX3Q0inebUH4Jw84LTx22iF_Wg_aqDQPg7r5ncDStf0YETzgCIJEqMc6MMqIaLwcyXi78i2E8G1YCbND18PYysPnnt9clcnDbTzMDdiTeQarbrmX4ouCtGScUKnia3ZTDXkJp8D8KQZzmFPrZLnWIBZhzDODc44ye1oWQq8Lf6qQBY_7IobdE1Y2t1t-tuBbJZ4_vvCKsRQ");'></div>
+</div>
+</div>
+<div class="mt-4">
+<label class="flex flex-col min-w-40 flex-1">
+<textarea class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#3b3b54] bg-[#1c1c27] focus:border-primary min-h-36 placeholder:text-[#9d9db9] p-[15px] text-base font-normal leading-normal" placeholder="Describe the changes you want to make..."></textarea>
+</label>
+</div>
+<div class="mt-4 flex flex-col sm:flex-row gap-3">
+<button class="flex-1 flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Generate</span>
+</button>
+<button class="flex-1 flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-[#282839] text-white text-base font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Download</span>
+</button>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-[#282839] text-white text-base font-bold leading-normal tracking-[0.015em]">
+<span class="material-symbols-outlined mr-2">upload_file</span>
+<span class="truncate">Upload Image</span>
+</button>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-transparent border border-[#3b3b54] text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-[#282839]">
+<span class="material-symbols-outlined mr-2">refresh</span>
+<span class="truncate">Reset</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

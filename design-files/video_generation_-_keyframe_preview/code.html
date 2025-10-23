@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Veo Video Generation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1313ec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111118",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-white">
+<div class="relative flex h-auto min-h-screen w-full flex-col">
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10 border-b border-gray-200 dark:border-gray-800">
+<div class="flex size-12 shrink-0 items-center justify-start">
+<span class="material-symbols-outlined text-gray-900 dark:text-white text-2xl">arrow_back</span>
+</div>
+<h2 class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Create with Veo</h2>
+<div class="flex w-12 items-center justify-end">
+<p class="text-primary text-base font-bold leading-normal tracking-[0.015em] shrink-0 cursor-pointer">Save</p>
+</div>
+</div>
+<div class="flex flex-col flex-1 p-4 gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-gray-900 dark:text-white text-base font-medium leading-normal" for="video-prompt">Describe the video you want to create</label>
+<textarea class="form-textarea w-full resize-none overflow-hidden rounded-lg bg-gray-100 dark:bg-[#1c1c27] text-gray-900 dark:text-white border-gray-300 dark:border-[#3b3b54] focus:border-primary focus:ring-primary min-h-36 p-4 text-base font-normal leading-normal placeholder:text-gray-400 dark:placeholder:text-[#9d9db9]" id="video-prompt" placeholder="e.g., 'A majestic drone shot of a futuristic city at sunset, with flying cars weaving between skyscrapers.'"></textarea>
+<p class="text-sm text-gray-500 dark:text-gray-400">Be descriptive for best results.</p>
+</div>
+<div class="flex">
+<button class="flex min-w-[84px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Generate Keyframes</span>
+</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="flex flex-col gap-3">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg bg-gray-200 dark:bg-[#282839] flex items-center justify-center" data-alt="Placeholder for the first frame preview">
+<div class="text-center p-4">
+<span class="material-symbols-outlined text-4xl text-gray-400 dark:text-gray-500">image</span>
+<p class="text-white text-base font-medium leading-normal mt-2">First Frame</p>
+<p class="text-gray-400 dark:text-[#9d9db9] text-sm font-normal leading-normal">A preview of the first frame will appear here.</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg bg-gray-200 dark:bg-[#282839] flex items-center justify-center" data-alt="Placeholder for the last frame preview">
+<div class="text-center p-4">
+<span class="material-symbols-outlined text-4xl text-gray-400 dark:text-gray-500">image</span>
+<p class="text-white text-base font-medium leading-normal mt-2">Last Frame</p>
+<p class="text-gray-400 dark:text-[#9d9db9] text-sm font-normal leading-normal">A preview of the last frame will appear here.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Example of generated frames -->
+<!-- <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="flex flex-col gap-3">
+                    <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg" data-alt="A majestic drone shot of a futuristic city at sunset, with flying cars weaving between skyscrapers." style='background-image: url("https://placeholder.pics/svg/300x169/1313ec/ffffff/Futuristic%20City");'></div>
+                    <div>
+                        <p class="text-gray-900 dark:text-white text-base font-medium leading-normal">First Frame</p>
+                        <p class="text-gray-500 dark:text-[#9d9db9] text-sm font-normal leading-normal">A preview of the first frame</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg" data-alt="The sun has set further, and the city lights are brighter, with a different pattern of flying cars." style='background-image: url("https://placeholder.pics/svg/300x169/1313ec/ffffff/Futuristic%20City%20-%20Night");'></div>
+                    <div>
+                        <p class="text-gray-900 dark:text-white text-base font-medium leading-normal">Last Frame</p>
+                        <p class="text-gray-500 dark:text-[#9d9db9] text-sm font-normal leading-normal">A preview of the last frame</p>
+                    </div>
+                </div>
+            </div> -->
+<div class="flex mt-auto pt-4">
+<button class="flex min-w-[84px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-gray-300 dark:bg-[#282839] text-gray-500 dark:text-gray-400 text-base font-bold leading-normal tracking-[0.015em]" disabled="">
+<span class="truncate">Generate Video</span>
+</button>
+</div>
+<!-- Example of enabled button after keyframes -->
+<!-- <div class="flex mt-auto pt-4">
+                <button class="flex min-w-[84px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em]">
+                    <span class="truncate">Generate Video</span>
+                </button>
+            </div> -->
+</div>
+</div>
+</body></html>

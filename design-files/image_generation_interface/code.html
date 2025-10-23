@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Creative Suite AI - Imagen</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1313ec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111118",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-dark group/design-root overflow-x-hidden">
+<header class="flex items-center bg-[#111118] p-4 pb-2 justify-between sticky top-0 z-10">
+<button class="text-white flex size-12 shrink-0 items-center justify-center">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</button>
+<h1 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Creative Suite AI - Imagen</h1>
+<div class="size-12"></div>
+</header>
+<main class="flex-1 flex flex-col px-4 py-6 gap-6">
+<section class="flex flex-col gap-4">
+<label class="flex flex-col">
+<textarea class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#3b3b54] bg-[#1c1c27] focus:border-[#3b3b54] min-h-36 placeholder:text-[#9d9db9] p-[15px] text-base font-normal leading-normal" placeholder="Describe what you want to create..."></textarea>
+</label>
+<label class="flex flex-col min-w-40 flex-1">
+<p class="text-white text-base font-medium leading-normal pb-2">Aspect Ratio</p>
+<div class="relative">
+<select class="form-input appearance-none flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#3b3b54] bg-[#1c1c27] focus:border-[#3b3b54] h-14 placeholder:text-[#9d9db9] p-[15px] text-base font-normal leading-normal pr-10">
+<option value="1:1">1:1 (Square)</option>
+<option value="16:9">16:9 (Widescreen)</option>
+<option value="9:16">9:16 (Vertical)</option>
+<option value="4:3">4:3 (Standard)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[#9d9db9] pointer-events-none">unfold_more</span>
+</div>
+</label>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 flex-1 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Generate</span>
+</button>
+</section>
+<section class="flex flex-col items-center gap-6">
+<div class="relative bg-center bg-no-repeat aspect-square bg-cover rounded-lg w-full max-w-[360px] bg-[#1c1c27] flex items-center justify-center">
+<div class="flex flex-col items-center gap-2 text-center">
+<span class="material-symbols-outlined text-5xl text-[#9d9db9]">photo_camera</span>
+<p class="text-[#9d9db9] text-base font-medium leading-normal">Your generated image will appear here.</p>
+</div>
+</div>
+</section>
+<section class="flex flex-col gap-4">
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Recent Creations</h2>
+<div class="flex gap-4 overflow-x-auto pb-4 -mb-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg w-32 h-32 shrink-0" data-alt="Abstract purple and blue energy waves" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBZrp_xmnrOISVSuZ-ihMLp5Jk_NiAdBSrFgYJ1SfgLSpONSHSED64fMbkDVxyUDgQDYhvL4Hx5wCiX4JL-fJ2-IJSxVL00Xt8LNBftPDKiVtt0MUT8qnVcQMnVm1sVmF1g_AYYfcAyP9grY617rCXfleQ78SHXiyDG3lvwPljK6j9xuEyVafDzNCxwQrImF3pwNcD9iEtxvzRy5Aj86Mw09nfrt54SKEcsoWwfuSlR7cmUe1MaTDGKHzC13WoX7LvU4115NXkLlg");'></div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg w-32 h-32 shrink-0" data-alt="A futuristic cityscape at night with neon lights" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDMTo9T3WBL8iAl3Q11ubKI6sNsGIeBCA-h9TZ_7yEA4vygoKVU1D6e1v9ovl_LYmwOAfXLuDD7AJtLUWgw_Ib1BmzLxusScE_eYpVEtXTR0CpeNoguU06psx1HlFyCNGW8-KFq3aoZz8JNnhpo2hEZJleO-VT2-i1FUOmeD_pSye978YHm4TWWw1NW_Q4wogXDM8ztz7LmJiY-yZ7WWfozRmwuSA6eo7MQDG1oAn5zqbS2ftgt7BdvkWAkEWO123IzkZqKVi5-og");'></div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg w-32 h-32 shrink-0" data-alt="A portrait of a cyborg with glowing eyes" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDYrRNQFUxMXdXQnKgDNoHZfYJA_o2j9VWOtydsUbxBoDMDnsDdKss8AHJ7Y9zyqnLnPjtIfW_0kin7d4k7DgDCaP2j5EMTMyetF6NNMWmRCm3zy5BzfttnQJPTxQ8heWmOl0janHOwhePcBgu00BqRhUJsMKFDYPwTKc8vnFsuEG0kK5yQ6Twpq40lRduAzL_8ahycOaO1BXvVniwFDRM1NLaORW5zMvueQqrkhoabVoKNrBly0zaleX51D-IRCTbLMmv7hdL9EA");'></div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg w-32 h-32 shrink-0" data-alt="A surreal landscape with floating islands" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD1nhEtu4Q8FYXsv4uaaq8fbABEHuiHb3q14DCTzqq5K6AfLbhdrMuUxMpPyKa0wfO73dpM9KtkZzwNKZnzkD3Ax8Vy6EwSP4TB2M_y4EgXf2HGPBu23L1c-Pevo5dDt-Dxs3wHxTI3pIJKLne4Z3ucPj8aAQqn3o0EX9V8DwDh8kTnqkck1TuuUIEU6g1Cgnw0jZGm62TWHFnC2UME7WTJs9q-vU_dsxFrAr-WPZW0_coTm8Pt91ntPkxoF_FWnAOv-AQ3V5JiXw");'></div>
+</div>
+</section>
+</main>
+</div>
+</body></html>

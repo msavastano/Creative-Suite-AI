@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Creative Suite AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1313ec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white">
+<div class="relative flex h-auto min-h-screen w-full flex-col">
+<header class="flex items-center bg-transparent p-4 pb-2 justify-between">
+<div class="flex size-12 shrink-0 items-center">
+<span class="material-symbols-outlined text-4xl" style="background: linear-gradient(90deg, #4f46e5, #c026d3); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">auto_awesome</span>
+</div>
+<h1 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] flex-1 text-center font-display">Creative Suite AI</h1>
+<div class="flex w-12 items-center justify-end">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-transparent text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0">
+<span class="material-symbols-outlined text-3xl">account_circle</span>
+</button>
+</div>
+</header>
+<main class="flex-grow px-4 py-3">
+<div class="px-4 py-3">
+<label class="flex flex-col min-w-40 h-12 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full">
+<div class="text-[#9d9db9] flex border-none bg-[#1c1c27] items-center justify-center pl-4 rounded-l-xl border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-xl text-white focus:outline-0 focus:ring-0 border-none bg-[#1c1c27] focus:border-none h-full placeholder:text-[#9d9db9] px-4 text-base font-normal leading-normal" placeholder="Search projects or tools" value=""/>
+</div>
+</label>
+</div>
+<div class="p-4 @container">
+<div class="grid grid-cols-1 gap-6">
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-[0_0_4px_rgba(0,0,0,0.1)] bg-[#1c1c27] hover:bg-primary/20 transition-all duration-300">
+<div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-1 py-6 px-6">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-4xl text-fuchsia-400">photo_camera</span>
+<p class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Image Generation</p>
+</div>
+<p class="text-[#9d9db9] text-base font-normal leading-normal mt-2">Create stunning images from text descriptions.</p>
+</div>
+</div>
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-[0_0_4px_rgba(0,0,0,0.1)] bg-[#1c1c27] hover:bg-primary/20 transition-all duration-300">
+<div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-1 py-6 px-6">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-4xl text-cyan-400">edit</span>
+<p class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Image Editing</p>
+</div>
+<p class="text-[#9d9db9] text-base font-normal leading-normal mt-2">Enhance and transform your photos with AI-powered tools.</p>
+</div>
+</div>
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-[0_0_4px_rgba(0,0,0,0.1)] bg-[#1c1c27] hover:bg-primary/20 transition-all duration-300">
+<div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-1 py-6 px-6">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-4xl text-indigo-400">movie</span>
+<p class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Video Generation</p>
+</div>
+<p class="text-[#9d9db9] text-base font-normal leading-normal mt-2">Bring your stories to life with AI-generated videos.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 mt-6">
+<h3 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-4">Your Recent Creations</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col rounded-lg bg-[#1c1c27] overflow-hidden">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover" data-alt="Abstract colorful swirling patterns" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBR44O8cfIyrDvskbviDZpupXLTIRJ_V9Eaq6iOxAEgolRWNUEyL-qdHP2KAb31jU6BRnum1jXbV3djfJJBmwvnuoS-welSxeUtQxwpQF0i489LWMtBlV62nfmi8uKyQoWk1r3msm-aEYgtQJ3FQCkOKbj1iHILCHOwUHOlFBTfMwRWMySi3UoPvfdITtawdGS1zireCwvHBfzxTaVlOQe8AypdJcSKHY2JKh3fCVpYV-_Hd2mDW8TJNSas2AAHDkYx1-7OcZ2l4A");'></div>
+<div class="p-3">
+<p class="text-white text-sm font-bold truncate">Cyberpunk Cityscape</p>
+<p class="text-[#9d9db9] text-xs">Today</p>
+</div>
+</div>
+<div class="flex flex-col rounded-lg bg-[#1c1c27] overflow-hidden">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover" data-alt="A portrait of a futuristic woman with neon accents" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDs0_ZQcy7ktaMBigSk1f-d1hBd6AbAdm9L7HrDyGirWb3KzNy5QbRVXuW00wnY_zRfnAgW5rUwcvaJ3ARgCsGvP8AnuNRhXBC-Ez9g9XtzpokW9vjZPSaSwGR0Bm0JGtSj8ahGpoEteLMs8e3vZjCDWO_WfiJT-yPBrD_qDq6yPHMvf-itBilfhRvDtGJm6PWRV4JEdHREwkt-tCjqtRmwWdE40x_pjHrG-uRFKKmahekWDHPRmnzx2yRfLfCWD4n1qNY-vf0tsw");'></div>
+<div class="p-3">
+<p class="text-white text-sm font-bold truncate">Galactic Explorer</p>
+<p class="text-[#9d9db9] text-xs">Yesterday</p>
+</div>
+</div>
+<div class="flex flex-col rounded-lg bg-[#1c1c27] overflow-hidden">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover" data-alt="A lush, enchanted forest with glowing mushrooms" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAdYdB9pGAYUgoa3Asl-_LGT9WtoxeZ2zSoZ2v8zYIb7W26YhilMhmqjl6HsU4KiUCfA9mSqmzQhdM-EehDu62fsV9wLa3rVHaFaZW5ZcHEdrs47bn71oshgclAj9mi5QY5_5TR-nuZ3psmRwGgET-3otevuX2d26IX7zn0hWDDqJ-EWZ8ZjR2rdaoMmlsQPBk3g2KdRYncGyw8U66BCQdhDp8i64r28vKv2nej4he5Qf4lSFGyhAyZLhGmXNKJox3Lwc3L-J30TA");'></div>
+<div class="p-3">
+<p class="text-white text-sm font-bold truncate">Enchanted Forest</p>
+<p class="text-[#9d9db9] text-xs">2 days ago</p>
+</div>
+</div>
+<div class="flex flex-col rounded-lg bg-[#1c1c27] overflow-hidden">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover" data-alt="A dynamic video of a sports car speeding through a city at night" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDVSDASIp5mvnBUEdtH2gV4f-UWLpYsCoQp2Oep4itK6uK2-vHhHkadrX77CLPynkaBqJqiTQ7zKxJvPdCAtzNt5jKDoPe9Y3MEy5CemXTH0VpEMULNA4QANHmcH1o88W4sRCc-rahatLDMp4yMeL7FGTTAhCtUPwhnKRoLpUlSsmMl8gyFXfabM4bq7dPcLKkiDiEZApcCtjfaqQ9dgExVNmFzmTinunWdFhXDkaJb_kp62-5AWfOk5De_5wW4kz6-ABHPXfZoXA");'></div>
+<div class="p-3">
+<p class="text-white text-sm font-bold truncate">Night Rider Video</p>
+<p class="text-[#9d9db9] text-xs">3 days ago</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="sticky bottom-0 bg-[#101022] border-t border-t-primary/20 px-4 py-2">
+<nav class="flex justify-around items-center">
+<a class="flex flex-col items-center text-primary" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-xs">Home</span>
+</a>
+<a class="flex flex-col items-center text-[#9d9db9] hover:text-white" href="#">
+<span class="material-symbols-outlined">folder</span>
+<span class="text-xs">Projects</span>
+</a>
+<a class="flex flex-col items-center text-[#9d9db9] hover:text-white" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-xs">Settings</span>
+</a>
+</nav>
+</footer>
+</div>
+</body></html>
