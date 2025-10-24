@@ -5,6 +5,7 @@ import ImageGeneration from './pages/ImageGeneration';
 import ImageEditing from './pages/ImageEditing';
 import VideoGeneration from './pages/VideoGeneration';
 import VideoPlayer from './pages/VideoPlayer';
+import PromptImprovement from './pages/PromptImprovement';
 import ApiKeyManager from './components/ApiKeyManager';
 import Layout from './components/Layout';
 import './App.css';
@@ -20,6 +21,7 @@ function App() {
             <Route path="/image-editing" element={<ImageEditing />} />
             <Route path="/video-generation" element={<VideoGeneration />} />
             <Route path="/video-player" element={<VideoPlayer />} />
+            <Route path="/prompt-improvement" element={<PromptImprovement />} />
           </Routes>
         </Layout>
       </Router>

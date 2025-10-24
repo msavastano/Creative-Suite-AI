@@ -48,6 +48,12 @@ const SideMenu: React.FC = () => {
               <span className="label">Video Player</span>
             </Link>
           </li>
+          <li>
+            <Link to="/prompt-improvement">
+              <span className="material-symbols-outlined icon">tips_and_updates</span>
+              <span className="label">Prompt Improvement</span>
+            </Link>
+          </li>
         </ul>
       </nav>
     </div>

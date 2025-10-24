@@ -88,6 +88,28 @@ export const generateLastFrameWithNano = async (prompt: string, firstFrame: Imag
     throw new Error("Last frame generation failed.");
   };
 
+export const improvePrompt = async (prompt: string, type: 'video' | 'image'): Promise<string> => {
+  const ai = getAiClient();
+  const fullPrompt = `Improve the following ${type} prompt: "${prompt}"`;
+  const response = await ai.models.generateContent({
+    model: 'gemini-2.0-flash',
+    contents: {
+      parts: [
+        { text: fullPrompt },
+      ],
+    },
+  });
+
+  if (response.candidates && response.candidates.length > 0 && response.candidates[0].content && response.candidates[0].content.parts) {
+    for (const part of response.candidates[0].content.parts) {
+      if (part.text) {
+        return part.text;
+      }
+    }
+  }
+  throw new Error("Prompt improvement failed.");
+}
+
 export const generateVideoWithVeo = async (
   prompt: string,
   firstFrame: ImageData,
