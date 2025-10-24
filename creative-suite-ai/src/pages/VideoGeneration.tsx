@@ -15,28 +15,28 @@ const VideoGeneration: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleGenerateKeyframes = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const firstFrameBytes = await generateImageWithImagen(prompt, "16:9");
-      const firstFrameData = { base64: firstFrameBytes, mimeType: "image/png" };
-      setFirstFrame(firstFrameData);
-      setFirstFrameUrl(`data:image/png;base64,${firstFrameBytes}`);
-
-      const lastFrameBytes = await generateLastFrameWithNano(
-        prompt,
-        firstFrameData
-      );
-      const lastFrameData = { base64: lastFrameBytes, mimeType: "image/png" };
-      setLastFrame(lastFrameData);
-      setLastFrameUrl(`data:image/png;base64,${lastFrameBytes}`);
-    } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "An unknown error occurred."
-      );
-    } finally {
-      setLoading(false);
+  const handleFileChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    frameType: "first" | "last"
+  ) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = (reader.result as string).split(",")[1];
+        const imageData = {
+          base64: base64String,
+          mimeType: file.type,
+        };
+        if (frameType === "first") {
+          setFirstFrame(imageData);
+          setFirstFrameUrl(URL.createObjectURL(file));
+        } else {
+          setLastFrame(imageData);
+          setLastFrameUrl(URL.createObjectURL(file));
+        }
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -98,17 +98,6 @@ const VideoGeneration: React.FC = () => {
             Be descriptive for best results.
           </p>
         </div>
-        <div className="flex">
-          <button
-            onClick={handleGenerateKeyframes}
-            className="flex min-w-[84px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em]"
-            disabled={loading}
-          >
-            <span className="truncate">
-              {loading ? "Generating..." : "Generate Keyframes"}
-            </span>
-          </button>
-        </div>
         {error && <p className="text-red-500">{error}</p>}
         {loading && <div className="text-center">Loading...</div>}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -131,6 +120,23 @@ const VideoGeneration: React.FC = () => {
                 </div>
               )}
             </div>
+            <div className="flex">
+              <input
+                type="file"
+                id="first-frame-upload"
+                className="hidden"
+                accept="image/*"
+                onChange={(e) => handleFileChange(e, "first")}
+              />
+              <button
+                onClick={() =>
+                  document.getElementById("first-frame-upload")?.click()
+                }
+                className="flex min-w-[84px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-gray-200 dark:bg-[#282839] text-gray-900 dark:text-white text-base font-bold leading-normal tracking-[0.015em]"
+              >
+                Upload First Frame
+              </button>
+            </div>
           </div>
           <div className="flex flex-col gap-3">
             <div
@@ -150,6 +156,23 @@ const VideoGeneration: React.FC = () => {
                   </p>
                 </div>
               )}
+            </div>
+            <div className="flex">
+              <input
+                type="file"
+                id="last-frame-upload"
+                className="hidden"
+                accept="image/*"
+                onChange={(e) => handleFileChange(e, "last")}
+              />
+              <button
+                onClick={() =>
+                  document.getElementById("last-frame-upload")?.click()
+                }
+                className="flex min-w-[84px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-gray-200 dark:bg-[#282839] text-gray-900 dark:text-white text-base font-bold leading-normal tracking-[0.015em]"
+              >
+                Upload Last Frame
+              </button>
             </div>
           </div>
         </div>
