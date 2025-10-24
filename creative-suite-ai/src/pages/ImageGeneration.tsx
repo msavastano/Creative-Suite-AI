@@ -1,16 +1,33 @@
 import React, { useState } from 'react';
+import { generateImageWithImagen } from '../services/ai';
+import { AspectRatio } from '../types';
 
 const ImageGeneration: React.FC = () => {
   const [prompt, setPrompt] = useState('');
-  const [aspectRatio, setAspectRatio] = useState('1:1');
+  const [aspectRatio, setAspectRatio] = useState<AspectRatio>('1:1');
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [recentCreations, setRecentCreations] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleGenerate = () => {
-    // Placeholder for image generation logic
-    const newImage = `https://via.placeholder.com/512x512.png?text=${encodeURIComponent(prompt)}`;
-    setGeneratedImage(newImage);
-    setRecentCreations([newImage, ...recentCreations]);
+  const handleGenerate = async () => {
+    const apiKey = localStorage.getItem('apiKey');
+    if (!apiKey) {
+      setError('API Key not found. Please set it in the API Key Manager.');
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    try {
+      const imageBytes = await generateImageWithImagen(prompt, aspectRatio, apiKey);
+      const imageUrl = `data:image/png;base64,${imageBytes}`;
+      setGeneratedImage(imageUrl);
+      setRecentCreations([imageUrl, ...recentCreations]);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An unknown error occurred.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -34,7 +51,7 @@ const ImageGeneration: React.FC = () => {
           <select
             id="aspect-ratio"
             value={aspectRatio}
-            onChange={(e) => setAspectRatio(e.target.value)}
+            onChange={(e) => setAspectRatio(e.target.value as AspectRatio)}
             className="w-full p-2 rounded-lg bg-gray-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700"
           >
             <option value="1:1">1:1</option>
@@ -45,9 +62,12 @@ const ImageGeneration: React.FC = () => {
         <button
           onClick={handleGenerate}
           className="w-full p-2 rounded-lg bg-primary text-white font-bold"
+          disabled={loading}
         >
-          Generate
+          {loading ? 'Generating...' : 'Generate'}
         </button>
+        {error && <p className="text-red-500">{error}</p>}
+        {loading && <div className="text-center">Loading...</div>}
         {generatedImage && (
           <div className="flex-1 flex items-center justify-center">
             <img src={generatedImage} alt="Generated" className="max-w-full max-h-full rounded-lg" />

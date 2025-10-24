@@ -1,15 +1,40 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { generateImageWithImagen, generateLastFrameWithNano } from '../services/ai';
+import { ImageData } from '../types';
 
 const VideoGeneration: React.FC = () => {
-  const [prompt, setPrompt] = useState('');
-  const [firstFrame, setFirstFrame] = useState<string | null>(null);
-  const [lastFrame, setLastFrame] = useState<string | null>(null);
+  const [prompt, setPrompt]                   = useState('');
+  const [firstFrame, setFirstFrame]           = useState<ImageData | null>(null);
+  const [firstFrameUrl, setFirstFrameUrl]     = useState<string | null>(null);
+  const [lastFrame, setLastFrame]             = useState<ImageData | null>(null);
+  const [lastFrameUrl, setLastFrameUrl]       = useState<string | null>(null);
+  const [loading, setLoading]                 = useState(false);
+  const [error, setError]                     = useState<string | null>(null);
 
-  const handleGenerateKeyframes = () => {
-    // Placeholder for keyframe generation logic
-    setFirstFrame('https://via.placeholder.com/512x288.png?text=First+Frame');
-    setLastFrame('https://via.placeholder.com/512x288.png?text=Last+Frame');
+  const handleGenerateKeyframes = async () => {
+    const apiKey = localStorage.getItem('apiKey');
+    if (!apiKey) {
+      setError('API Key not found. Please set it in the API Key Manager.');
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    try {
+      const firstFrameBytes = await generateImageWithImagen(prompt, '16:9', apiKey);
+      const firstFrameData = { base64: firstFrameBytes, mimeType: 'image/png' };
+      setFirstFrame(firstFrameData);
+      setFirstFrameUrl(`data:image/png;base64,${firstFrameBytes}`);
+
+      const lastFrameBytes = await generateLastFrameWithNano(prompt, firstFrameData, apiKey);
+      const lastFrameData = { base64: lastFrameBytes, mimeType: 'image/png' };
+      setLastFrame(lastFrameData);
+      setLastFrameUrl(`data:image/png;base64,${lastFrameBytes}`);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An unknown error occurred.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -36,14 +61,16 @@ const VideoGeneration: React.FC = () => {
             <p className="text-sm text-gray-500 dark:text-gray-400">Be descriptive for best results.</p>
         </div>
         <div className="flex">
-            <button onClick={handleGenerateKeyframes} className="flex min-w-[84px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em]">
-                <span className="truncate">Generate Keyframes</span>
+            <button onClick={handleGenerateKeyframes} className="flex min-w-[84px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em]" disabled={loading}>
+                <span className="truncate">{loading ? 'Generating...' : 'Generate Keyframes'}</span>
             </button>
         </div>
+        {error && <p className="text-red-500">{error}</p>}
+        {loading && <div className="text-center">Loading...</div>}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="flex flex-col gap-3">
-                <div className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg bg-gray-200 dark:bg-[#282839] flex items-center justify-center" style={{ backgroundImage: `url(${firstFrame})` }}>
-                    {!firstFrame && <div className="text-center p-4">
+                <div className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg bg-gray-200 dark:bg-[#282839] flex items-center justify-center" style={{ backgroundImage: `url(${firstFrameUrl})` }}>
+                    {!firstFrameUrl && <div className="text-center p-4">
                         <span className="material-symbols-outlined text-4xl text-gray-400 dark:text-gray-500">image</span>
                         <p className="text-white text-base font-medium leading-normal mt-2">First Frame</p>
                         <p className="text-gray-400 dark:text-[#9d9db9] text-sm font-normal leading-normal">A preview of the first frame will appear here.</p>
@@ -51,8 +78,8 @@ const VideoGeneration: React.FC = () => {
                 </div>
             </div>
             <div className="flex flex-col gap-3">
-                <div className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg bg-gray-200 dark:bg-[#282839] flex items-center justify-center" style={{ backgroundImage: `url(${lastFrame})` }}>
-                {!lastFrame && <div className="text-center p-4">
+                <div className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg bg-gray-200 dark:bg-[#282839] flex items-center justify-center" style={{ backgroundImage: `url(${lastFrameUrl})` }}>
+                {!lastFrameUrl && <div className="text-center p-4">
                         <span className="material-symbols-outlined text-4xl text-gray-400 dark:text-gray-500">image</span>
                         <p className="text-white text-base font-medium leading-normal mt-2">Last Frame</p>
                         <p className="text-gray-400 dark:text-[#9d9db9] text-sm font-normal leading-normal">A preview of the last frame will appear here.</p>
@@ -61,7 +88,7 @@ const VideoGeneration: React.FC = () => {
             </div>
         </div>
         <div className="flex mt-auto pt-4">
-            <Link to="/video-player" className={`flex min-w-[84px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 text-base font-bold leading-normal tracking-[0.015em] ${firstFrame && lastFrame ? 'bg-primary text-white' : 'bg-gray-300 dark:bg-[#282839] text-gray-500 dark:text-gray-400'}`} >
+            <Link to="/video-player" state={{ firstFrame, lastFrame, prompt }} className={`flex min-w-[84px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 text-base font-bold leading-normal tracking-[0.015em] ${firstFrame && lastFrame ? 'bg-primary text-white' : 'bg-gray-300 dark:bg-[#282839] text-gray-500 dark:text-gray-400'}`} >
                 <span className="truncate">Generate Video</span>
             </Link>
         </div>
