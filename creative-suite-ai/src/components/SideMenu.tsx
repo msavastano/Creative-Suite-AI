@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './SideMenu.css';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "./SideMenu.css";
 
 const SideMenu: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -10,17 +10,44 @@ const SideMenu: React.FC = () => {
   };
 
   return (
-    <div className={`side-menu ${isOpen ? 'open' : 'closed'}`}>
+    <div className={`side-menu ${isOpen ? "open" : "closed"}`}>
       <button onClick={toggleMenu} className="toggle-button">
-        {isOpen ? 'Close' : 'Open'}
+        {isOpen ? "Close" : "Open"}
       </button>
       <nav>
         <ul>
-          <li><Link to="/">Dashboard</Link></li>
-          <li><Link to="/image-generation">Image Generation</Link></li>
-          <li><Link to="/image-editing">Image Editing</Link></li>
-          <li><Link to="/video-generation">Video Generation</Link></li>
-          <li><Link to="/video-player">Video Player</Link></li>
+          <li>
+            <Link to="/">
+              <span className="material-symbols-outlined icon">dashboard</span>
+              <span className="label">Dashboard</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/image-generation">
+              <span className="material-symbols-outlined icon">image</span>
+              <span className="label">Image Generation</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/image-editing">
+              <span className="material-symbols-outlined icon">edit</span>
+              <span className="label">Image Editing</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/video-generation">
+              <span className="material-symbols-outlined icon">
+                video_library
+              </span>
+              <span className="label">Video Generation</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/video-player">
+              <span className="material-symbols-outlined icon">play_arrow</span>
+              <span className="label">Video Player</span>
+            </Link>
+          </li>
         </ul>
       </nav>
     </div>
