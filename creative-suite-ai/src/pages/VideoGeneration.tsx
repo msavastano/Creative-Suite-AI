@@ -13,20 +13,15 @@ const VideoGeneration: React.FC = () => {
   const [error, setError]                     = useState<string | null>(null);
 
   const handleGenerateKeyframes = async () => {
-    const apiKey = localStorage.getItem('apiKey');
-    if (!apiKey) {
-      setError('API Key not found. Please set it in the API Key Manager.');
-      return;
-    }
     setLoading(true);
     setError(null);
     try {
-      const firstFrameBytes = await generateImageWithImagen(prompt, '16:9', apiKey);
+      const firstFrameBytes = await generateImageWithImagen(prompt, '16:9');
       const firstFrameData = { base64: firstFrameBytes, mimeType: 'image/png' };
       setFirstFrame(firstFrameData);
       setFirstFrameUrl(`data:image/png;base64,${firstFrameBytes}`);
 
-      const lastFrameBytes = await generateLastFrameWithNano(prompt, firstFrameData, apiKey);
+      const lastFrameBytes = await generateLastFrameWithNano(prompt, firstFrameData);
       const lastFrameData = { base64: lastFrameBytes, mimeType: 'image/png' };
       setLastFrame(lastFrameData);
       setLastFrameUrl(`data:image/png;base64,${lastFrameBytes}`);

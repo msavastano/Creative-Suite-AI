@@ -11,15 +11,10 @@ const ImageGeneration: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   const handleGenerate = async () => {
-    const apiKey = localStorage.getItem('apiKey');
-    if (!apiKey) {
-      setError('API Key not found. Please set it in the API Key Manager.');
-      return;
-    }
     setLoading(true);
     setError(null);
     try {
-      const imageBytes = await generateImageWithImagen(prompt, aspectRatio, apiKey);
+      const imageBytes = await generateImageWithImagen(prompt, aspectRatio);
       const imageUrl = `data:image/png;base64,${imageBytes}`;
       setGeneratedImage(imageUrl);
       setRecentCreations([imageUrl, ...recentCreations]);

@@ -1,15 +1,16 @@
 import { GoogleGenAI, Modality } from "@google/genai";
 import { AspectRatio, ImageData } from '../types';
 
-const getAiClient = (apiKey: string) => {
+const getAiClient = () => {
+  const apiKey = process.env.REACT_APP_API_KEY;
   if (!apiKey) {
     throw new Error("API Key is missing. Please provide a valid API key.");
   }
   return new GoogleGenAI({ apiKey });
 };
 
-export const generateImageWithImagen = async (prompt: string, aspectRatio: AspectRatio, apiKey: string): Promise<string> => {
-  const ai = getAiClient(apiKey);
+export const generateImageWithImagen = async (prompt: string, aspectRatio: AspectRatio): Promise<string> => {
+  const ai = getAiClient();
   const response = await ai.models.generateImages({
     model: 'imagen-4.0-generate-001',
     prompt,
@@ -20,14 +21,14 @@ export const generateImageWithImagen = async (prompt: string, aspectRatio: Aspec
     },
   });
 
-  if (response.generatedImages && response.generatedImages.length > 0) {
+  if (response.generatedImages && response.generatedImages.length > 0 && response.generatedImages[0].image && response.generatedImages[0].image.imageBytes) {
     return response.generatedImages[0].image.imageBytes;
   }
   throw new Error("Image generation failed or returned no images.");
 };
 
-export const editImageWithNano = async (prompt: string, originalImage: ImageData, apiKey: string): Promise<string> => {
-  const ai = getAiClient(apiKey);
+export const editImageWithNano = async (prompt: string, originalImage: ImageData): Promise<string> => {
+  const ai = getAiClient();
   const response = await ai.models.generateContent({
     model: 'gemini-2.5-flash-image',
     contents: {
@@ -46,16 +47,18 @@ export const editImageWithNano = async (prompt: string, originalImage: ImageData
     },
   });
 
-  for (const part of response.candidates[0].content.parts) {
-    if (part.inlineData) {
-      return part.inlineData.data;
+  if (response.candidates && response.candidates.length > 0 && response.candidates[0].content && response.candidates[0].content.parts) {
+    for (const part of response.candidates[0].content.parts) {
+      if (part.inlineData && part.inlineData.data) {
+        return part.inlineData.data;
+      }
     }
   }
   throw new Error("Image editing failed or returned no image data.");
 };
 
-export const generateLastFrameWithNano = async (prompt: string, firstFrame: ImageData, apiKey: string): Promise<string> => {
-    const ai = getAiClient(apiKey);
+export const generateLastFrameWithNano = async (prompt: string, firstFrame: ImageData): Promise<string> => {
+    const ai = getAiClient();
     const fullPrompt = `Based on the provided image and the description "${prompt}", generate a logical final frame for a short video. The generated image should represent the end of the story or action.`;
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash-image',
@@ -75,10 +78,12 @@ export const generateLastFrameWithNano = async (prompt: string, firstFrame: Imag
       },
     });
 
-    for (const part of response.candidates[0].content.parts) {
-      if (part.inlineData) {
-        return part.inlineData.data;
-      }
+    if (response.candidates && response.candidates.length > 0 && response.candidates[0].content && response.candidates[0].content.parts) {
+        for (const part of response.candidates[0].content.parts) {
+            if (part.inlineData && part.inlineData.data) {
+                return part.inlineData.data;
+            }
+        }
     }
     throw new Error("Last frame generation failed.");
   };
@@ -88,11 +93,10 @@ export const generateVideoWithVeo = async (
   firstFrame: ImageData,
   lastFrame: ImageData,
   aspectRatio: AspectRatio,
-  onProgress: (status: string) => void,
-  apiKey: string
+  onProgress: (status: string) => void
 ): Promise<string> => {
   // Re-create client to ensure it uses the latest key from the dialog
-  const ai = getAiClient(apiKey);
+  const ai = getAiClient();
 
   onProgress("Initializing video generation...");
   let operation = await ai.models.generateVideos({
@@ -141,7 +145,7 @@ export const generateVideoWithVeo = async (
   }
 
   onProgress("Fetching your masterpiece...");
-  const videoResponse = await fetch(`${downloadLink}&key=${apiKey}`);
+  const videoResponse = await fetch(`${downloadLink}&key=${process.env.REACT_APP_API_KEY}`);
   if (!videoResponse.ok) {
     throw new Error(`Failed to download video: ${videoResponse.statusText}`);
   }

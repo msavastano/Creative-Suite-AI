@@ -27,15 +27,10 @@ const ImageEditing: React.FC = () => {
 
   const handleGenerate = async () => {
     if (originalImage) {
-      const apiKey = localStorage.getItem('apiKey');
-      if (!apiKey) {
-        setError('API Key not found. Please set it in the API Key Manager.');
-        return;
-      }
       setLoading(true);
       setError(null);
       try {
-        const imageBytes = await editImageWithNano(prompt, originalImage, apiKey);
+        const imageBytes = await editImageWithNano(prompt, originalImage);
         setEditedImage(`data:image/png;base64,${imageBytes}`);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An unknown error occurred.');

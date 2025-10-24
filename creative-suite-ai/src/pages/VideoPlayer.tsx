@@ -14,14 +14,8 @@ const VideoPlayer: React.FC = () => {
 
   useEffect(() => {
     const generateVideo = async () => {
-      const apiKey = localStorage.getItem('apiKey');
-      if (!apiKey) {
-        setError('API Key not found. Please set it in the API Key Manager.');
-        setLoading(false);
-        return;
-      }
       try {
-        const url = await generateVideoWithVeo(prompt, firstFrame, lastFrame, '16:9', setProgress, apiKey);
+        const url = await generateVideoWithVeo(prompt, firstFrame, lastFrame, '16:9', setProgress);
         setVideoUrl(url);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An unknown error occurred.');
