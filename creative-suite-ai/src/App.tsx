@@ -6,19 +6,22 @@ import ImageEditing from './pages/ImageEditing';
 import VideoGeneration from './pages/VideoGeneration';
 import VideoPlayer from './pages/VideoPlayer';
 import ApiKeyManager from './components/ApiKeyManager';
+import Layout from './components/Layout';
 import './App.css';
 
 function App() {
   return (
     <ApiKeyManager>
       <Router>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/image-generation" element={<ImageGeneration />} />
-          <Route path="/image-editing" element={<ImageEditing />} />
-          <Route path="/video-generation" element={<VideoGeneration />} />
-          <Route path="/video-player" element={<VideoPlayer />} />
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/image-generation" element={<ImageGeneration />} />
+            <Route path="/image-editing" element={<ImageEditing />} />
+            <Route path="/video-generation" element={<VideoGeneration />} />
+            <Route path="/video-player" element={<VideoPlayer />} />
+          </Routes>
+        </Layout>
       </Router>
     </ApiKeyManager>
   );
